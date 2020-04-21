@@ -13,7 +13,12 @@ app.use(cors());
 //mongoose.connect('mongodb://localhost/DSAssignment');
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://127.0.0.1:27017/DSAssignment", { useUnifiedTopology: true   , useFindAndModify: false});
+const uri = "mongodb+srv://rashmika:Rashmika@fashionstore-k14re.mongodb.net/test?retryWrites=true&w=majority";
+
+mongoose.connect(uri, { useUnifiedTopology: true   , useFindAndModify: false},()=>{
+
+    console.log("DB connected");
+});
 
 
 app.use(express.json());  //  useNewUrlParser: true, useFindAndModify: false
