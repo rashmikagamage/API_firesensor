@@ -26,8 +26,9 @@ app.use(express.json());  //  useNewUrlParser: true, useFindAndModify: false
 app.use(express.urlencoded({extended:true}));
 
 app.use('/',routes);
-
-
+/*app.get('/',(res,req)=>{
+    req.send('hellp')
+})*/
 app.listen(4000,function(){
 
     console.log('now listening for requests');
