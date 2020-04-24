@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'); // Import the mongoose module
+const Schema = mongoose.Schema; // Define a schema
 
-const RoomSchema = new Schema({
+const RoomSchema = new Schema({ // create the schema for the room
     
     id : {type: String},
     floorNo : {type:String},
@@ -12,7 +12,7 @@ const RoomSchema = new Schema({
     
 });
 
-const RoomDetails = mongoose.model('RoomDetails',RoomSchema);
+const RoomDetails = mongoose.model('RoomDetails',RoomSchema); // Compile model from schema
 
 
 module.exports = RoomDetails;

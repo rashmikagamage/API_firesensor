@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'); // Import the mongoose module
+const Schema = mongoose.Schema; // Define a schema
 
-const SensorSchema = new Schema({
+const SensorSchema = new Schema({ // create the schema for the senosr
     
     id : {type: String},
     active: {type:Boolean},
@@ -13,7 +13,7 @@ const SensorSchema = new Schema({
     
 });
 
-const Sensors = mongoose.model('Sensors',SensorSchema);
+const Sensors = mongoose.model('Sensors',SensorSchema); // Compile model from schema
 
 
 module.exports = Sensors;
