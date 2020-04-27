@@ -75,11 +75,21 @@ router.post("/updateSensorOnlyLevels/:id", async (req, res, next) => {
 		const updatedSensor = await Sensors.updateOne(
 			{ id: req.params.id }, // querying and find the correct sensor
 			{
-				$set: { smokeLevel: req.body.smokeLevel, co2Level: req.body.co2Level }, // update the both levels
+				$set: {
+					smokeLevel: req.body.smokeLevel,
+					co2Level: req.body.co2Level,
+				}, // update the both levels
 			}
 		);
 
-		res.json(updatedSensor); // reponse send as json object
+		//res.json(updatedSensor); // reponse send as json object
+		res.send(
+			JSON.stringify({
+				success: "sensor updated",
+				code: "updated",
+				sensor: updatedSensor,
+			})
+		); // send response to user
 	} catch (e) {
 		console.log(e);
 	}
