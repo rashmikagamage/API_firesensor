@@ -92,7 +92,6 @@ router.post("/updateSensorOnlyLevels/:id", async (req, res, next) => {
 						})
 					); // send response to user
 				});
-				console.log("upadate", updatedSensor);
 
 				//res.json(updatedSensor); // reponse send as json object
 			} else {
