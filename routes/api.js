@@ -71,25 +71,40 @@ router.patch("/updateSensor/:id", async (req, res, next) => {
 // create the endpoint(URL) for update only smoke level and co2 level
 
 router.post("/updateSensorOnlyLevels/:id", async (req, res, next) => {
+	console.log("body", req.body);
 	try {
-		const updatedSensor = await Sensors.updateOne(
-			{ id: req.params.id }, // querying and find the correct sensor
-			{
-				$set: {
-					smokeLevel: req.body.smokeLevel,
-					co2Level: req.body.co2Level,
-				}, // update the both levels
-			}
-		);
+		const find = await Sensors.findOne({ id: req.params.id }).then((sensor) => {
+			if (sensor.active) {
+				// only active sensors will update
+				const updatedSensor = Sensors.updateOne(
+					{ id: req.params.id }, // querying and find the correct sensor
+					{
+						$set: {
+							smokeLevel: req.body.smokeLevel,
+							co2Level: req.body.co2Level,
+						}, // update the both levels
+					}
+				).then(() => {
+					res.send(
+						JSON.stringify({
+							err: "sensor updated",
+							code: " updated",
+						})
+					); // send response to user
+				});
+				console.log("upadate", updatedSensor);
 
-		//res.json(updatedSensor); // reponse send as json object
-		res.send(
-			JSON.stringify({
-				success: "sensor updated",
-				code: "updated",
-				sensor: updatedSensor,
-			})
-		); // send response to user
+				//res.json(updatedSensor); // reponse send as json object
+			} else {
+				res.send(
+					JSON.stringify({
+						err: "sensor NOT updated",
+
+						sensor: sensor,
+					})
+				); // send response to user
+			}
+		});
 	} catch (e) {
 		console.log(e);
 	}
