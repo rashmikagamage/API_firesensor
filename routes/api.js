@@ -286,7 +286,7 @@ router.post("/sendSMS", async (req, res, next) => {
             // userAgent
         );
 
-        const message = "SENSOR WARNING MESSAGE ------ TAKE A ACTION SOON "; // message
+        const message = "Fire Alert! Take an action!"; // message
         const messageType = "ARN"; // ARN = Alerts, Reminders, and Notifications; OTP = One time password; MKT = Marketing
 
         console.log("## MessagingClient.message ##");
