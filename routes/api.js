@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
-
+const TeleSignSDK = require("telesignsdk"); // import the module
 const Sensors = require("../models/sensors"); // get the sensor model
-const RoomDetails = require("../models/roomDetails"); // get the roomdetails model
+const RoomDetails = require("../models/roomDetails"); // get the room details model
 
 // create the endpoint(URL) for add sensor to the mongodb database
 
@@ -262,7 +262,6 @@ router.post("/sendSMS", async (req, res, next) => {
     /*
         for sending sms , use TeleSignSdk package (module) and use its trial account
     */
-
     const receiverPhoneNo = req.body.phoneNo; // get the reciever's phone no in request body to a variav
 
     try {
@@ -319,8 +318,5 @@ router.post("/sendSMS", async (req, res, next) => {
         console.log(e);
     }
 });
-
-module.exports = router;
-
 
 module.exports = router; // exports the module
